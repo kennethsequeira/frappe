@@ -28,12 +28,41 @@
 	{% include "templates/includes/blog/blogger.html" %}
 	{% endif %}
 
+	<!-- Add font awesome share icons -->
+	<hr class="my-5">
+	<div class="text-center">
+	
+		<a href="https://www.facebook.com/sharer.php?u={{ url }}"  
+		class="fa fa-facebook-official" target="_blank"></a>
+
+		<a href="https://twitter.com/intent/tweet?text={{ title }}&url={{ url }}" 
+		class="fa fa-twitter" target="_blank"></a>	
+
+		<a href="https://www.linkedin.com/shareArticle?mini=true&title={{ title }}&summary={{ blog_intro }}" 
+		class="fa fa-linkedin"></a>
+		
+		<a href="mailto:?subject={{ title }}&body={{ url }}" class="fa fa-envelope"></a>
+		
+		<button class="fa fa-link a" onclick="copy_url()">
+			<!-- write copy on-click action here-->
+
+		</button>
+		
+	</div>
+	<!-- end of share icons -->
+
 	<div class="blog-comments my-5">
 		{% include 'templates/includes/comments/comments.html' %}
 	</div>
 </div>
 <script>
 	frappe.ready(() => frappe.set_search_path("/blog"))
+
+	function copy_url(){
+		let text = window.location.href
+		frappe.utils.copy_to_clipboard(text)		
+	}
+
 </script>
 {% endblock %}
 
@@ -45,5 +74,44 @@
 	font-size: 1.2rem;
 }
 
+.fa {
+  padding: 20px;
+  font-size: 20px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px 2px;
+  border-radius: 50%;
+  width: auto;
+}
+
+.fa:hover {
+    opacity: 0.7;
+}
+
+.fa-facebook-official {
+	background: #212529;
+	color: white;
+}
+
+.fa-twitter {
+	background: #212529;
+	color: white;
+}
+
+.fa-linkedin {
+	background: #212529;
+	color: white;
+}
+
+.fa-envelope{
+	background: #212529;
+	color: white;
+} 
+
+.fa-link{
+	background: #212529;
+	color: white;
+
 </style>
 {% endblock %}
+
